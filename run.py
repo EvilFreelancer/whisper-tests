@@ -3,15 +3,8 @@ import aiohttp
 import aiofiles
 import asyncio
 import time
-import eyed3
 
 PORT = 9001
-
-
-def get_duration(filepath):
-    """Returns the duration of the mp3 file in seconds."""
-    audiofile = eyed3.load(filepath)
-    return audiofile.info.time_secs
 
 
 async def post(filepath):
@@ -29,8 +22,7 @@ async def post(filepath):
         async with session.post(url, data=form) as response:
             txt = await response.text()
     elapsed_time = time.time() - start_time
-    duration = get_duration(filepath)
-    print(f"Processed {filepath} (Duration: {duration:.2f} seconds) in {elapsed_time:.2f} seconds")
+    print(f"Processed {filepath} in {elapsed_time:.2f} seconds")
     async with aiofiles.open(save_to, 'w') as f:
         await f.write(txt)
 
