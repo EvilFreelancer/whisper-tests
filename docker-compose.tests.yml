@@ -78,7 +78,7 @@ services:
       - ASR_ENGINE=faster_whisper
       - ASR_QUANTIZATION=int4
     ports:
-      - "9003:9000"
+      - "9004:9000"
     <<: *shared-logs
     <<: *shared-nvi
     <<: *shared-volumes
