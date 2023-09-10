@@ -110,5 +110,5 @@ reference and transcribed texts.
 | 10 | 1714           | 91.19               | 0.98             |
 
 * MAX VRAM used: 3.9Gb
-* AVG Accuracy:
-* AVG Transcribe Time:
+* AVG Accuracy: 0.96
+* AVG Transcribe Time: 51.5s
