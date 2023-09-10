@@ -43,7 +43,6 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
       - ASR_MODEL=large-v2
       - ASR_ENGINE=faster_whisper
-      - ASR_QUANTIZATION=float16
     ports:
       - "9002:9000"
     <<: *shared-logs
