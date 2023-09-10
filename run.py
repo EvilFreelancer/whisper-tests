@@ -4,7 +4,7 @@ import aiofiles
 import asyncio
 import time
 
-PORT = 9002
+PORT = 9001
 
 
 async def post(filepath):

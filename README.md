@@ -42,6 +42,7 @@ reference and transcribed texts.
 | 10 | 1714           | 202.24              | 1                |
 
 * MAX VRAM used: 10.6Gb
+* AVG Transcribe Time: 132.5s
 
 ### float16 (half)
 
@@ -64,3 +65,50 @@ reference and transcribed texts.
 
 * MAX VRAM used: 8.41Gb
 * AVG Accuracy: 0.96
+* AVG Transcribe Time: 77.5s
+
+### int8
+
+* Engine: faster_whisper
+* Model: large-v2
+* Type: int8
+
+| №  | Audio Time (s) | Transcribe Time (s) | Accuracy (ratio) |
+|----|----------------|---------------------|------------------|
+| 1  | 823            | 30.88               | 0.97             |
+| 2  | 856            | 32.70               | 0.94             |
+| 3  | 416            | 16.21               | 0.99             |
+| 4  | 1390           | 48.94               | 0.93             |
+| 5  | 2205           | 85.69               | 0.94             |
+| 6  | 922            | 28.30               | 0.93             |
+| 7  | 1177           | 39.74               | 0.98             |
+| 8  | 1505           | 53.19               | 0.97             |
+| 9  | 1575           | 62.52               | 0.96             |
+| 10 | 1714           | 73.35               | 0.98             |
+
+* MAX VRAM used: 4.6Gb
+* AVG Accuracy: 0.96
+* AVG Transcribe Time: 46.5s
+
+### int4
+
+* Engine: faster_whisper
+* Model: large-v2
+* Type: int4
+
+| №  | Audio Time (s) | Transcribe Time (s) | Accuracy (ratio) |
+|----|----------------|---------------------|------------------|
+| 1  | 823            | 36.01               | 0.96             |
+| 2  | 856            | 39.24               | 0.94             |
+| 3  | 416            | 19.36               | 0.99             |
+| 4  | 1390           | 57.84               | 0.94             |
+| 5  | 2205           | 99.64               | 0.95             |
+| 6  | 922            | 37.69               | 0.93             |
+| 7  | 1177           | 52.48               | 0.98             |
+| 8  | 1505           | 71.51               | 0.97             |
+| 9  | 1575           | 80.40               | 0.96             |
+| 10 | 1714           | 91.19               | 0.98             |
+
+* MAX VRAM used: 2.27Gb
+* AVG Accuracy:
+* AVG Transcribe Time:
