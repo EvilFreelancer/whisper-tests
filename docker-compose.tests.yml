@@ -24,11 +24,8 @@ x-shared-volumes: &shared-volumes
 services:
 
   whisper01:
-    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
     restart: "unless-stopped"
-    build:
-      context: ../whisper-asr-webservice
-      dockerfile: Dockerfile.gpu
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - ASR_MODEL=large-v2
@@ -40,11 +37,8 @@ services:
     <<: *shared-volumes
 
   whisper02:
-    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    image: onerahmet/openai-whisper-asr-webservice:latest-gpu
     restart: "unless-stopped"
-    build:
-      context: ../whisper-asr-webservice
-      dockerfile: Dockerfile.gpu
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
       - ASR_MODEL=large-v2
