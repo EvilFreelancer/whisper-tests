@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  whisper:
+    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: "unless-stopped"
+    build:
+      context: ../whisper-asr-webservice
+      dockerfile: Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ASR_MODEL=large-v2
+      - ASR_ENGINE=openai_whisper
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./whisper_data:/root/.cache/whisper
+      - ./huggingface_data:/root/.cache/huggingface
+      - ./faster_whisper_data:/root/.cache/faster_whisper
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [ gpu ]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50k"

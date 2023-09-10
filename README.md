@@ -1,2 +1,4 @@
-# whisper-tests
-Collection of experiments on OpenAI Whisler models
+# Whisper Tests
+
+Collection of experiments on OpenAI Whisper models
+

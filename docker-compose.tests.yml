@@ -1,0 +1,91 @@
+version: "3.9"
+
+x-shared-logs: &shared-logs
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "50k"
+
+x-shared-nvi: &shared-nvi
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [ gpu ]
+
+x-shared-volumes: &shared-volumes
+  volumes:
+    - ./whisper_data:/root/.cache/whisper
+    - ./huggingface_data:/root/.cache/huggingface
+    - ./faster_whisper_data:/root/.cache/faster_whisper
+
+services:
+
+  whisper01:
+    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: "unless-stopped"
+    build:
+      context: ../whisper-asr-webservice
+      dockerfile: Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ASR_MODEL=large-v2
+      - ASR_ENGINE=openai_whisper
+    ports:
+      - "9001:9000"
+    <<: *shared-logs
+    <<: *shared-nvi
+    <<: *shared-volumes
+
+  whisper02:
+    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: "unless-stopped"
+    build:
+      context: ../whisper-asr-webservice
+      dockerfile: Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ASR_MODEL=large-v2
+      - ASR_ENGINE=faster_whisper
+      - ASR_QUANTIZATION=float16
+    ports:
+      - "9002:9000"
+    <<: *shared-logs
+    <<: *shared-nvi
+    <<: *shared-volumes
+
+  whisper03:
+    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: "unless-stopped"
+    build:
+      context: ../whisper-asr-webservice
+      dockerfile: Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ASR_MODEL=large-v2
+      - ASR_ENGINE=faster_whisper
+      - ASR_QUANTIZATION=int8
+    ports:
+      - "9003:9000"
+    <<: *shared-logs
+    <<: *shared-nvi
+    <<: *shared-volumes
+
+  whisper04:
+    #image: onerahmet/openai-whisper-asr-webservice:latest-gpu
+    restart: "unless-stopped"
+    build:
+      context: ../whisper-asr-webservice
+      dockerfile: Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - ASR_MODEL=large-v2
+      - ASR_ENGINE=faster_whisper
+      - ASR_QUANTIZATION=int4
+    ports:
+      - "9003:9000"
+    <<: *shared-logs
+    <<: *shared-nvi
+    <<: *shared-volumes
